@@ -12,7 +12,6 @@ We at Infographs comprise a dedicated team to provide business solutions and det
 - <code><img height="35" src="https://github.com/edent/SuperTinyIcons/blob/master/images/svg/github.svg"></code> Github
 - <code><img height="35" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/flask/flask.png"></code> Flask
 
-
 ![image](https://user-images.githubusercontent.com/63183513/113979064-685bdd80-9862-11eb-8ef6-8dd02fa29cf4.png)
 ![image](https://user-images.githubusercontent.com/63183513/113979097-74e03600-9862-11eb-849a-65cbd11cdf14.png)
 ![image](https://user-images.githubusercontent.com/63183513/113979122-7ad61700-9862-11eb-8a6e-dfde052f0e8d.png)
