@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Infographs</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+        <!-- Favicons -->
+        <link href="{{  url_for('static', filename='img/infograph.jpg')}}" rel="icon">
+        <link href="{{  url_for('static', filename='img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <!-- Vendor CSS Files -->
+        <link href="{{  url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{  url_for('static', filename='/vendor/bootstrap-icons/bootstrap-icons.css')}} " rel="stylesheet">
+        <link href="{{  url_for('static', filename='vendor/aos/aos.css')}}" rel="stylesheet">
+        <link href="{{  url_for('static', filename='vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+        <link href="{{  url_for('static', filename='vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+        <link href="{{  url_for('static', filename='vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+        <!-- Template Main CSS File -->
+        <link href="{{  url_for('static', filename='css/style.css')}}" rel="stylesheet">
+        <link href="{{  url_for('static', filename='css/styles2.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="{{  url_for('static', filename='css/main.css')}}">
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+        <style>
+    
+          * {
+            box-sizing: border-box;
+          }
+
+          #mydiv{
+            margin-top: 30px;
+          }
+    
+          #myUL {
+            margin: 0;
+            padding: 0;
+          }
+    
+          #myUL li {
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            list-style-type: none;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+          }
+    
+          #myUL li:nth-child(odd) {
+            background: #f9f9f9;
+          }
+    
+          #myUL li:hover {
+            background: #ddd;
+          }
+    
+          #myUL .head {
+            font-size: larger;
+            font-weight: bold;
+          }
+          #myUL .head:hover {
+            background-color: #f9f9f9;
+          }
+    
+          #myUL .head .close {
+            display: none !important;
+          }
+
+          .hero{
+            height: auto;
+          }
+    
+          .title {
+            width: 75%;
+          }
+          .serial {
+            width: 5%;
+            display: none;
+          }
+          .debit,
+          .credit {
+            width: 15%;
+            padding: 0 10px;
+          }
+          .debit {
+            color: rgb(240, 90, 52);
+          }
+          .credit {
+            margin-right: 45px;
+            color: rgb(45, 175, 95);
+          }
+    
+          .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px 12px 16px;
+          }
+    
+          .close:hover {
+            background-color: #f44336;
+            color: white;
+          }
+    
+          .header1 {
+            background-color: #36d8f4;
+            padding: 30px 40px;
+            color: white;
+            text-align: center;
+          }
+    
+          .header1:after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+    
+          .inputs {
+            display: flex;
+            justify-content: space-between;
+          }
+    
+          input,
+          select, .gst .label {
+            border: 0.5px groove rgb(53, 53, 53);
+            margin: 0;
+            border-radius: 3px;
+            width: 25%;
+            padding: 10px;
+            float: left;
+            height: 40px;
+          }
+    
+          .addBtn {
+            border: 0.5px groove rgb(53, 53, 53);
+            border-radius: 3px;
+            height: 40px;
+            padding: 10px;
+            width: 15%;
+            background: #d9d9d9;
+            color: #555;
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+          }
+    
+          .addBtn:hover {
+            background-color: #bbb;
+          }
+          .calculate{
+              min-height: 35vh;
+              display: flex; 
+              flex-direction: column
+          }
+          .calculate .gst{
+            width: 60%; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-around;
+            margin-top: 40px;
+          }
+          .calculate .gst select{
+              width: 25%;
+          }
+          .calculate .gst button{
+              width: 15%;
+              min-width: 95px;
+          }
+          .calculate .gst .label{
+              width: 15%;
+              border: none;
+              min-width: 95px;
+          }
+        </style>
+    </head>
+    <body>
+        <!-- ======= Header ======= -->
+        <header id="header" class="header fixed-top">
+            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+                <a href="\" class="logo d-flex align-items-center">
+                    <img src="{{  url_for('static', filename='img/infograph.jpg')}}" alt="">
+                    <span>Infographs</span>
+                </a>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li>
+                            <a class="nav-link scrollto active" href="#hero">Home</a>
+                        </li>
+                        <li>
+                            <a class="nav-link scrollto" href="#products">Products</a>
+                        </li>
+                        <li>
+                            <a class="nav-link scrollto" href="#services">Services</a>
+                        </li>
+                        <!-- <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li> -->
+                        <li>
+                            <a class="nav-link scrollto" href="#team">Team</a>
+                        </li>
+                        <!-- <li><a href="blog.html">Blog</a></li> -->
+                        <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                          <ul>
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                              <ul>
+                                <li><a href="#">Deep Drop Down 1</a></li>
+                                <li><a href="#">Deep Drop Down 2</a></li>
+                                <li><a href="#">Deep Drop Down 3</a></li>
+                                <li><a href="#">Deep Drop Down 4</a></li>
+                                <li><a href="#">Deep Drop Down 5</a></li>
+                              </ul>
+                            </li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                            <li><a href="#">Drop Down 4</a></li>
+                          </ul>
+                        </li> -->
+                        <li>
+                            <a class="nav-link scrollto" href="#contact">Contact</a>
+                        </li>
+                        <!-- <li><a class="getstarted scrollto" href="#">Sign Up</a></li> -->
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav>
+                <!-- .navbar -->
+            </div>
+        </header>
+        <!-- End Header -->
+        <!-- ======= Hero Section ======= -->
+        <section id="hero" class="hero d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div id="myDIV" class="header">
+                        <h2>PASSBOOK</h2>
+                        <div class="inputs">
+                            <input type="text" id="desc" placeholder="Description">
+                            <input type="number" id="amount" placeholder="Amount">
+                            <select name="transaction" id="transc">
+                                <option value="1">Debit</option>
+                                <option value="2">Credit</option>
+                            </select>
+                            <button onclick="newElement()" class="addBtn">Add</button>
+                        </div>
+                    </div>
+                    <ul id="myUL">
+                        <li class="head">
+                            <span class="serial">S.No.</span>
+                            <span class="title">Description</span>
+                            <span class="debit">Debit</span>
+                            <span class="credit">Credit</span>
+                        </li>
+                    </ul>
+                    <div class="calculate">
+                        <div class="gst">
+                            <div class="label"> Business Type:</div>
+                            <select name="biz" id="biz">
+                                <option value="1">Agri Products</option>
+                                <option value="2">Manufacturing</option>
+                                <option value="3">Mining</option>
+                                <option value="4">Services</option>
+                            </select>
+                            <button onclick="calc()">Calculate</button>
+                            <br>
+                        </div>
+                        <div id="result" style="margin: 20px auto"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+          anychart.onDocumentReady(function () {
+            // create data
+            var data = [];
+            keywords = document.querySelectorAll(".keywords");
+            keywords.forEach((element) => {
+              var value1 = Math.floor(Math.random() * 40) + 30;
+              var n = { x: element.innerHTML, value: value1 };
+              data.push(n);
+            });
+
+            // create a chart and set the data
+            chart = anychart.tagCloud(data);
+            chart.angles([0]);
+            // set the container id
+            chart.container("word-cloud");
+            // initiate drawing the chart
+            chart.draw();
+          });
+        </script>
+        <!-- Vendor JS Files -->
+        <script src="{{  url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
+        <script src="{{  url_for('static', filename='vendor/aos/aos.js')}}"></script>
+        <script src="{{  url_for('static', filename='vendor/php-email-form/validate.js')}}"></script>
+        <script src="{{  url_for('static', filename='vendor/swiper/swiper-bundle.min.js')}}"></script>
+        <script src="{{  url_for('static', filename='vendor/purecounter/purecounter.js')}}"></script>
+        <script src="{{  url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+        <script src="{{  url_for('static', filename='vendor/glightbox/js/glightbox.min.js')}}"></script>
+        <!-- Template Main JS File -->
+        <script src="{{  url_for('static', filename='js/main.js')}}"></script>
+        <script>
+          data = ["Employee Salary", "Raw Materials", "Sales", "Running Cost"];
+          var x = 4;
+          serialdata = [1, 2, 3, 4];
+          debitdata = [1000, 1500, 0, 1000];
+          creditdata = [0, 0, 30000, 0];
+          function addElements() {
+            for (let index = 0; index < data.length; index++) {
+              var li = document.createElement("li");
+              document.getElementById("myUL").appendChild(li);
+              var serial = document.createElement("SPAN");
+              var span = document.createElement("SPAN");
+              var desc = document.createElement("SPAN");
+              var debit = document.createElement("SPAN");
+              var credit = document.createElement("SPAN");
+              var txt = document.createTextNode("\u00D7");
+              var num = document.createTextNode(serialdata[index]);
+              var debitval = document.createTextNode(debitdata[index]);
+              var creditval = document.createTextNode(creditdata[index]);
+              var t = document.createTextNode(data[index]);
+              serial.className = "serial";
+              desc.className = "title";
+              span.className = "close";
+              debit.className = "debit";
+              credit.className = "credit";
+              serial.appendChild(num);
+              desc.appendChild(t);
+              span.appendChild(txt);
+              debit.appendChild(debitval);
+              credit.appendChild(creditval);
+              li.appendChild(serial);
+              li.appendChild(span);
+              li.appendChild(desc);
+              li.appendChild(debit);
+              li.appendChild(credit);
+              closer();
+            }
+          }
+          function closer() {
+            var close = document.getElementsByClassName("close");
+            var i;
+            for (i = 0; i < close.length; i++) {
+              close[i].onclick = function () {
+                var div = this.parentElement;
+                var y = this.previousSibling.innerHTML;
+                console.log(div);
+                data[parseInt(y) - 1] = "";
+                debitdata[parseInt(y) - 1] = 0;
+                creditdata[parseInt(y) - 1] = 0;
+                console.log(data);
+                console.log(debitdata);
+                console.log(creditdata);
+                div.style.display = "none";
+              };
+            }
+          }
+          addElements();
+          closer();
+    
+          function newElement() {
+            var li = document.createElement("li");
+            var description = document.getElementById("desc").value;
+            var amount = document.getElementById("amount").value;
+            var transc = document.getElementById("transc").value;
+            if (description === "") {
+              alert("Add Description!");
+            }
+            if (amount === "") {
+              alert("Add Amount!");
+            } else {
+              document.getElementById("myUL").appendChild(li);
+            }
+            if (transc == 1) {
+              debval = amount;
+              credval = 0;
+            }
+            if (transc == 2) {
+              credval = amount;
+              debval = 0;
+            }
+            document.getElementById("desc").value = "";
+            document.getElementById("amount").value = "";
+            var serial = document.createElement("SPAN");
+            var span = document.createElement("SPAN");
+            var desc = document.createElement("SPAN");
+            var debit = document.createElement("SPAN");
+            var credit = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            serialdata.push(parseInt(serialdata.length) + 1);
+            var num = document.createTextNode(serialdata.length);
+            debitdata.push(parseInt(debval));
+            var debitval = document.createTextNode(debval);
+            creditdata.push(parseInt(credval));
+            var creditval = document.createTextNode(credval);
+            data.push(description);
+            var t = document.createTextNode(description);
+            serial.className = "serial";
+            desc.className = "title";
+            span.className = "close";
+            debit.className = "debit";
+            credit.className = "credit";
+            console.log(num);
+            serial.appendChild(num);
+            desc.appendChild(t);
+            span.appendChild(txt);
+            debit.appendChild(debitval);
+            credit.appendChild(creditval);
+            li.appendChild(serial);
+            li.appendChild(span);
+            li.appendChild(desc);
+            li.appendChild(debit);
+            li.appendChild(credit);
+            console.log(data);
+            console.log(debitdata);
+            console.log(creditdata);
+            console.log(serialdata);
+            closer();
+          }
+    
+          function calc(){
+            value = document.getElementById("biz").value;
+            totaldebit=0;
+            totalcredit=0;
+            debitdata.forEach(element => {
+                totaldebit = totaldebit + element;
+            });
+            creditdata.forEach(element => {
+                totalcredit = totalcredit + element;
+            });
+            if(value=='1')
+                GST = (totalcredit-totaldebit)*0.18;
+            if(value=='2')
+                GST = (totalcredit-totaldebit)*0.15;
+            if(value=='3')
+                GST = (totalcredit-totaldebit)*0.10;
+            if(value=='4')
+                GST = (totalcredit-totaldebit)*0.08;
+            document.getElementById("result").innerHTML = "Total Debit = " + totaldebit + "<br> Total Credit = "
+                                                            + totalcredit + "<br>Difference = " + (totalcredit - totaldebit)
+                                                             + "<br>Total GST = " + GST;
+            
+          }
+        </script>
+    </body>
+</html>
